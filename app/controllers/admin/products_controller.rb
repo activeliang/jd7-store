@@ -1,5 +1,7 @@
 class Admin::ProductsController < ApplicationController
-
+  before_action :authenticate_user!
+  before_action :require_is_admin
+  layout "admin"
   def new
     @product = Product.new
   end
@@ -29,7 +31,7 @@ class Admin::ProductsController < ApplicationController
       redirect_to admin_products_path, notice: "Update Success!"
     else
       render :edit
-    end 
+    end
   end
 
   private
