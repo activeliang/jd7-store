@@ -27,7 +27,9 @@
                 <% end %>
             </tbody>
         </table>
-        <div class="pull-right">总计 xxx RMB</div>
+        <div class="pull-right">
+            总计<%= render_cart_total_price(current_cart)%>RMB
+        </div>
         <br/>
         <hr/>
         <%= link_to("确认结账", '#', class:"btn btn-danger pull-right")%>
