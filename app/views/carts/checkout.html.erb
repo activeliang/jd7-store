@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-12">
+
+        <h2>购物明细</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>商品明细</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @current_cart.cart_items.each do |cart_item| %>
+                <tr>
+                    <td><%= link_to(cart_item.product.titel, product_path(curt_item.product) %></td>
+                    <td><%= cart_item.product.price %></td>
+                    <td><%= cart_item.quantity %></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="total pull-right">
+            总计<%= render_cart_total_price(@current_cart)%>
+        </div>
+    </div>
+    <hr/>
+    <h2>订单资讯</h2>
+    <br/>
+    <%= simple_form_for @order |order| %>
+    <div class="col-md-6">
+
+        <legend>订购人</legend>
+        <div class="form-group">
+
+            <%= f.input :billing_name %>
+            <%= f.input :billing_address%>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <legend>收货人</legend>
+        <div class="form-group">
+            <%= f.input :shipping_name %>
+            <%= f.input :sipping_address %>
+            <%= f.submit "结账生成订单",class: "btn btn-danger"%>
+        </div>
+    </div>
+
+</div>
